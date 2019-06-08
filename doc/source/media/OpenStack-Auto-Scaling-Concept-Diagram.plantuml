@@ -1,0 +1,34 @@
+# Diagram of OpenStack Auto-Scaling Concepts
+# PlantUML diagram - https://en.wikipedia.org/wiki/PlantUML
+@startuml
+
+cloud Cloud\n {
+  rectangle host as "Host" {
+  }
+  rectangle host2 as "Host" {
+    agent VM
+    agent VM2 as "VM"
+    agent Container
+    agent Container2 as "Container"
+  }
+}
+
+agent MS as "Monitoring Service"
+
+agent DS as "Decision Services\n(Clustering,\nOptimization,\nRoot Cause)"
+agent Heat as "Orchestration \nEngine"
+
+host -down-> MS
+VM -down-> MS
+Container -down-> MS : "Metric \nSamples"
+
+MS -down-> DS : "Alarms"
+MS -down-> Heat : "Alarms"
+
+DS -right-> Heat : "Scaling Commands"
+
+Heat -up-> host : "Orchestration"
+Heat -up-> VM2 : "Orchestration"
+Heat -up-> Container2 : "Orchestration"
+
+@enduml
