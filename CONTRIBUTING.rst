@@ -6,10 +6,10 @@ Contributing to OpenStack's auto-scaling SIG
 
 If you would like to participate in discussions or contribute in any
 way to the design and development of auto-scaling in OpenStack, please
-first see the following wiki to understand the SIG's mission, scope,
+first see the following documentation to understand the SIG's mission, scope,
 and other supporting information:
 
-  https://wiki.openstack.org/wiki/Auto-scaling_SIG
+  https://docs.openstack.org/auto-scaling-sig
 
 Many forms of contribution are valuable to the community, including but not
 limited to the following:

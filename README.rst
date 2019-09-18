@@ -5,10 +5,6 @@ OpenStack auto-scaling SIG
 This repository is for storing documentation and code which relates to
 the initiatives of OpenStack's auto-scaling SIG.
 
-For a comprehensive set of information and resources regarding the
-SIG, please see `the SIG's wiki page
-<https://wiki.openstack.org/wiki/Auto_scaling_SIG>`_.
-
 The documentation in this repository is automatically published
 online in HTML format:
 
