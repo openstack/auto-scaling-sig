@@ -8,7 +8,7 @@ the initiatives of OpenStack's auto-scaling SIG.
 The documentation in this repository is automatically published
 online in HTML format:
 
-- http://docs.openstack.org/auto-scaling-sig/latest/
+- https://docs.openstack.org/auto-scaling-sig/latest/
 
 License
 -------

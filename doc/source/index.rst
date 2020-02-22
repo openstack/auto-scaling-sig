@@ -29,7 +29,7 @@ Links for Auto-scaling SIG
 
 * `StoryBoard <https://storyboard.openstack.org/#!/project/openstack/auto-scaling-sig>`_
 * `Repository <https://opendev.org/openstack/auto-scaling-sig>`_
-* `Gerrit <http://review.openstack.org/#/q/status:open+project:openstack/auto-scaling-sig>`_
+* `Gerrit <https://review.openstack.org/#/q/status:open+project:openstack/auto-scaling-sig>`_
 * `Meeting <http://eavesdrop.openstack.org/#Auto-scaling_SIG_Meeting>`_
 * IRC: #openstack-auto-scaling-sig
 

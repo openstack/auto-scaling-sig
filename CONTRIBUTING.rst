@@ -90,14 +90,14 @@ Submitting a change
 
 To submit a change to this repository, please follow the steps in this page:
 
-   http://docs.openstack.org/infra/manual/developers.html
+   https://docs.openstack.org/infra/manual/developers.html
 
 If you already have a good understanding of how the system works and your
 OpenStack accounts are set up, you can skip to the development workflow
 section of this documentation to learn how changes to OpenStack should be
 submitted for review via the Gerrit tool:
 
-   http://docs.openstack.org/infra/manual/developers.html#development-workflow
+   https://docs.openstack.org/infra/manual/developers.html#development-workflow
 
 Pull requests submitted through GitHub will be ignored.
 
@@ -119,5 +119,5 @@ Review on Gerrit
 ----------------
 
 We would like to have more people to help on
-`review patches <http://review.openstack.org/#/q/status:open+project:openstack/auto-scaling-sig>`_
+`review patches <https://review.openstack.org/#/q/status:open+project:openstack/auto-scaling-sig>`_
 so we can make sure the quality of it and confirm that whatever we put in is helpful.
