@@ -1,3 +1,103 @@
+- job:
+    name: auto-scaling-heat-base
+    parent: devstack-tempest
+    abstract: true
+    timeout: 7800
+    required-projects: &base_required_projects
+      - openstack/devstack-gate
+      - openstack/heat
+      - openstack/heat-templates
+      - openstack/heat-tempest-plugin
+      - openstack/monasca-agent
+      - openstack/monasca-api
+      - openstack/monasca-common
+      - openstack/monasca-notification
+      - openstack/monasca-persister
+      - openstack/monasca-statsd
+      - openstack/monasca-thresh
+      - openstack/python-heatclient
+      - openstack/python-monascaclient
+      - openstack/heat-agents
+      - openstack/tempest
+    vars: &base_vars
+      tox_envlist: all
+      tempest_plugins:
+        - heat-tempest-plugin
+      devstack_localrc:
+        TEMPEST_PLUGINS: '/opt/stack/heat-tempest-plugin'
+        HEAT_USE_MOD_WSGI: True
+      devstack_services:
+        s-account: false
+        s-container: false
+        s-object: false
+        s-proxy: false
+        horizon: false
+        monasca-log: false
+        tempest: true
+      devstack_plugins:
+        monasca-api: https://opendev.org/openstack/monasca-api
+        heat: https://opendev.org/openstack/heat
+      devstack_local_conf:
+        post-config:
+          $HEAT_CONF:
+            DEFAULT:
+              convergence_engine: true
+              stack_scheduler_hints: true
+              hidden_stack_tags: hidden
+              encrypt_parameters_and_properties: True
+              logging_exception_prefix: "%(asctime)s.%(msecs)03d %(process)d TRACE %(name)s %(instance)s"
+              enable_stack_adopt: true
+              enable_stack_abandon: true
+              heat_api:
+                workers: 2
+              heat_api_cfn:
+                workers: 2
+              cache:
+                enabled: True
+              eventlet_opts:
+                client_socket_timeout: 120
+              oslo_messaging_notifications:
+                driver: messagingv2
+        test-config:
+          $TEMPEST_CONFIG:
+            service_available:
+              heat: True
+            heat_plugin:
+              convergence_engine_enabled: true
+              minimal_image_ref: ${DEFAULT_IMAGE_NAME:-cirros-0.3.6-x86_64-disk}
+              instance_type: m1.heat_int
+              minimal_instance_type: m1.heat_micro
+              image_ref: Fedora-Cloud-Base-30-1.2.x86_64
+              hidden_stack_tag: hidden
+              heat_config_notify_script: /opt/stack/heat-agents/heat-config/bin/heat-config-notify
+              boot_config_env: /opt/stack/heat-templates/hot/software-config/boot-config/test_image_env.yaml
+              credential_secret_id: $OS_CREDENTIAL_SECRET_ID
+            heat_features_enabled:
+              test_autoscaling: True
+      test_results_stage_name: test_results
+      zuul_copy_output:
+        '{{ devstack_base_dir }}/tempest/etc/tempest.conf': logs
+        '{{ devstack_base_dir }}/tempest/etc/accounts.yaml': logs
+        '{{ devstack_base_dir }}/tempest/tempest.log': logs
+        '{{ stage_dir }}/{{ test_results_stage_name }}.subunit': logs
+        '{{ stage_dir }}/{{ test_results_stage_name }}.html': logs
+        '{{ stage_dir }}/stackviz': logs
+      extensions_to_txt:
+        conf: true
+        log: true
+        yaml: true
+        yml: true
+    irrelevant-files:
+      - ^.*\.rst$
+      - ^doc/.*$
+      - ^specs/.*$
+
+- job:
+    name: auto-scaling-heat-monasca
+    parent: auto-scaling-heat-base
+    vars:
+      tempest_test_regex: heat_tempest_plugin.tests.scenario.test_autoscaling_monasca
+
 - project:
     templates:
       - publish-openstack-docs-pti
