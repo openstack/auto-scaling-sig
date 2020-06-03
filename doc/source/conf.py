@@ -31,12 +31,12 @@ extensions = [
 html_theme = 'openstackdocs'
 
 # openstackdocstheme options
-repository_name = 'openstack/auto-scaling-sig'
-bug_project = '917'
-bug_tag = ''
+openstackdocs_repo_name = 'openstack/auto-scaling-sig'
+openstackdocs_auto_name = False
+openstackdocs_use_storyboard = True
 
 # Feed configuration for yasfb
-feed_base_url = 'http://specs.openstack.org/openstack/auto-scaling-sig'
+feed_base_url = 'https://specs.openstack.org/openstack/auto-scaling-sig'
 feed_author = 'OpenStack Auto-scaling SIG'
 
 exclude_patterns = [
@@ -74,7 +74,7 @@ add_function_parentheses = True
 add_module_names = True
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = 'native'
 
 # -- Options for HTML output --------------------------------------------------
 
