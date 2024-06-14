@@ -4,7 +4,6 @@
     abstract: true
     timeout: 7800
     required-projects: &base_required_projects
-      - openstack/devstack-gate
       - openstack/heat
       - openstack/heat-templates
       - openstack/heat-tempest-plugin
